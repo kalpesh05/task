@@ -6,7 +6,7 @@ const isAuthenticated = () => {
   // this function will check if user exist in redux store
   // also if user has token
   // returns True or False
-  const user = store.getState().user.profile;
+  const user = store.getState().user.user;
   if (user && user.token) {
     return true;
   }

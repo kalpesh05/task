@@ -1,5 +1,17 @@
+import "./login.scss";
+import "./login.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {
+  Grid,
+  Form,
+  Segment,
+  Button,
+  Message,
+  Icon,
+  Divider
+} from "semantic-ui-react";
+import ServerError from "../Notification/ServerErrors";
 import { login } from "../../action/user";
 export class Login extends Component {
   constructor(props) {
@@ -8,11 +20,20 @@ export class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      msg: ""
+      msg: "",
+      loading: false,
+      form_error: false
     };
 
-    // this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // console.log(nex)
+    if (nextProps.user) {
+      this.props.history.push("/taskList");
+    }
   }
 
   handleChange(e) {
@@ -22,6 +43,7 @@ export class Login extends Component {
 
   handleLogin() {
     let { login } = this.props;
+    this.setState({ loading: true, form_error: false });
 
     let { email, password } = this.state;
 
@@ -37,49 +59,65 @@ export class Login extends Component {
       login({ email, password })
         .then(data => {
           console.log(data);
-          this.setState({ msg: data });
+          let { user } = data;
+          this.setState({ loading: false, user: user });
         })
         .catch(e => {
-          console.log(e);
-          this.setState({ msg: e });
+          let {
+            response: { data }
+          } = e;
+          console.log(e.response);
+          this.setState({ loading: false, form_error: data });
         });
     }
   }
 
   render() {
-    let { email, password } = this.state;
+    const { email, password, loading, form_error } = this.state;
+
     console.log(email);
     return (
-      <div>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          placeholder="Email"
-          onChange={e => this.handleChange(e)}
-        />
-        <br />
-        <br />
-        <br />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          placeholder="Password"
-          onChange={e => this.handleChange(e)}
-          // onChange={this.handleChange}
-        />
-        <br />
-        <br />
-        <br />
-        <button
-          onClick={() => {
-            this.handleLogin();
-          }}
-        >
-          Login
-        </button>
-      </div>
+      <Segment className={"login-root"}>
+        <Grid centered>
+          <Grid.Row>
+            <Grid.Column>
+              <Form onSubmit={this.handleLogin}>
+                <Form.Input
+                  fluid
+                  icon="mail"
+                  iconPosition="left"
+                  placeholder="Email"
+                  name="email"
+                  value={email}
+                  fieldtype="email"
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  value={password}
+                  fieldtype="password"
+                  onChange={this.handleChange}
+                />
+                {form_error && <ServerError errorMessage={form_error} />}
+                <Button
+                  className={"mb-1"}
+                  color="blue"
+                  content="Sign in"
+                  icon="sign-in"
+                  loading={loading}
+                  disabled={loading}
+                  fluid
+                />
+              </Form>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
     );
   }
 }

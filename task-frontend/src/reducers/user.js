@@ -3,7 +3,7 @@ import axios from "axios";
 import _ from "lodash";
 
 const initialState = {
-  profile: null
+  user: null
 };
 
 export default (state = initialState, action) => {
@@ -14,6 +14,7 @@ export default (state = initialState, action) => {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Token ${action.payload.token}`;
+        console.log("action.payload.token", axios.defaults.headers.common);
       } else {
         axios.defaults.headers.common["Authorization"] = "";
         delete axios.defaults.headers.common["Authorization"];
@@ -21,7 +22,7 @@ export default (state = initialState, action) => {
 
       state = {
         ...state,
-        profile: action.payload
+        user: action.payload
       };
       break;
 

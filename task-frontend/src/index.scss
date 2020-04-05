@@ -1,0 +1,75 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  overflow: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+  }
+
+}
+
+.ui.form .error.message, .ui.form .success.message, .ui.form .warning.message {
+  display: block !important;
+}
+
+
+#root{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.mb-1{
+  margin-bottom: 1em !important;
+}
+
+.ml-5{
+  margin-left: 5px !important;
+}
+
+.mr-5{
+  margin-right: 5px !important;
+}
+
+.ml-35{
+  margin-left: 35px;
+}
+
+.pb-40{
+  padding-bottom: 40px !important;
+}
+
+// image upload cropper
+.img-upload{
+  height: 150px;
+  width: 150px;
+  margin: auto;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 10px; 
+
+  &:hover{
+      // background-color: #000;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+      border-radius: 10px; 
+      cursor: pointer;
+  }
+}
+
+.image-corp-root{
+  text-align: center;
+
+  .image-cropper{
+    display: flex !important;
+    margin: auto;
+    background: black;
+    border-radius: 5px;
+    box-shadow: rgb(204, 204, 204) 1px 1px 16px;
+    margin-bottom: 10px;
+  }
+
+}

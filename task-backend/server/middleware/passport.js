@@ -38,6 +38,7 @@ passport.use(
     { usernameField: "email", session: false },
     async (email, password, done) => {
       const userData = await findByUserEmail(email);
+      // console.log(userData);
 
       if (userData.error == null && userData.data.length > 0) {
         const salt = userData.data[0].salt;
@@ -59,7 +60,7 @@ passport.use(
 passport.use(
   new JwtStrategy(jwtOptions, async (jwt_payload, done) => {
     const userData = await getByIdUser(jwt_payload.id);
-
+    console.log(userData);
     if (userData.error == null && userData.data.length > 0) {
       return done(false, userData.data);
     } else {

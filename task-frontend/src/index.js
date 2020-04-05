@@ -1,6 +1,7 @@
+import "./index.scss";
+import "semantic-ui-css/semantic.min.css";
 import React from "react";
 import ReactDOM from "react-dom";
-// import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { store, persistor } from "./store";
 import { history } from "./reducers";

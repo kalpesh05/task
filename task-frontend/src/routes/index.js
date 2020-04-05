@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Login from "../components/Login";
 import TaskList from "../components/Task/TaskList";
-import Taskadd from "../components/Task/Taskadd";
+import Taskadd from "../components/Task/Add/Taskadd";
 import AuthenticatedRoute from "./auth";
 
 const Test = () => {

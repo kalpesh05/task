@@ -14,6 +14,7 @@ const { loginValidationSchema } = require("../apiValidation/validation");
 
 const loginUser = async (req, res, next) => {
   try {
+    console.log(req.body);
     //  1.  Validate login api's inputs
     await validate(req.body);
     //  2.  authanticate login using passport

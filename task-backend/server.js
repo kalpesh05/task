@@ -47,15 +47,7 @@ app.use(
     credentials: true // enable set cookie
   })
 );
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization, access-control-allow-origin"
-  );
-  next();
-});
+
 app.use(passport.initialize());
 app.use(passport.session());
 require("./server/middleware/passport");
@@ -63,8 +55,8 @@ require("./server/middleware/passport");
 /*----------------------------------------------------------------
                   Router Export
 ------------------------------------------------------------------*/
-const stackbyRouter = require("./server/app");
-app.use(stackbyRouter);
+const Router = require("./server/app");
+app.use(Router);
 app.use(errorHandler.errorSend);
 /*----------------------------------------------------------------
                   Server Listen

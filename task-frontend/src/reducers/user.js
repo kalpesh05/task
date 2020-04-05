@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
       if (!_.isEmpty(action.payload) && action.payload.token) {
         axios.defaults.headers.common[
           "Authorization"
-        ] = `Token ${action.payload.token}`;
+        ] = `Bearer ${action.payload.token}`;
         console.log("action.payload.token", axios.defaults.headers.common);
       } else {
         axios.defaults.headers.common["Authorization"] = "";

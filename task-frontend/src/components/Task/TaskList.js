@@ -28,7 +28,7 @@ class TaskList extends Component {
   }
 
   componentDidMount() {
-    alert("5");
+    // alert("5");
     let { listTask } = this.props;
     listTask({})
       .then(response => {

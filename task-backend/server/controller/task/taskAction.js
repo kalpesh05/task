@@ -9,6 +9,8 @@ const { taskCreateSchema } = require("../apiValidation/validation");
 
 const handleActions = async (req, res, next) => {
   const { action } = req.params;
+
+  // console.log("task>>>", req.user);
   const body = req.body;
   const user = req.user[0];
 
@@ -75,7 +77,7 @@ const taskList = async body => {
 
 const taskCreate = async body => {
   const insertTaskObj = body;
-
+  console.log("<<<>>", body);
   const taskInsert = await insertTask(insertTaskObj);
 
   if (taskInsert.error != null) {

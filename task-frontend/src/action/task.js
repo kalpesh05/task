@@ -3,9 +3,9 @@ import axios from "axios";
 
 export const createTask = data => async dispatch => {
   try {
-    let res = await axios.post("/taskaction/add", data);
-    console.log(res);
-    let resp = res.data;
+    let res = await axios.post("/taskaction/create", data);
+    // console.log(res);
+    let resp = res.data.data;
 
     dispatch({
       type: CREATE_TASK,
@@ -20,10 +20,10 @@ export const createTask = data => async dispatch => {
 
 export const listTask = data => async dispatch => {
   try {
-    console.log(axios.defaults.headers.common);
+    // console.log(axios.defaults.headers.common);
     let res = await axios.post("/taskaction/list", data);
-    console.log(res);
-    let resp = res.data;
+    // console.log(res);
+    let resp = res.data.data;
 
     dispatch({
       type: FETCH_TASK_LIST,

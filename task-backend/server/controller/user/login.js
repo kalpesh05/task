@@ -24,8 +24,8 @@ const loginUser = async (req, res, next) => {
           if (err) {
             return next(LOGIN_FAILED);
           }
-          console.log(user[0].id);
-          console.log("process.env.JWT_SECRET", process.env.JWT_SECRET);
+          // console.log(user[0].id);
+          // console.log("process.env.JWT_SECRET", process.env.JWT_SECRET);
           const token = jwt.sign({ id: user[0].id }, process.env.JWT_SECRET);
 
           res.send({ message: LOGIN_SUCCESS, token: token });

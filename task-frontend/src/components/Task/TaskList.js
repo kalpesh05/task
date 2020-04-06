@@ -89,7 +89,7 @@ class TaskList extends Component {
   }
 }
 
-const mapStateToProps = ({ user, task }) => ({ user, list: task });
+const mapStateToProps = ({ user, task }) => ({ user, list: task.list });
 
 const mapDispatchToProps = { listTask };
 

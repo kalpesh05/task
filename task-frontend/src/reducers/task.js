@@ -1,4 +1,4 @@
-import { CREATE_CUSTOMER, FETCH_TASK_LIST } from "../action/actionTypes";
+import { CREATE_TASK, FETCH_TASK_LIST } from "../action/actionTypes";
 import axios from "axios";
 import update from "immutability-helper";
 import _ from "lodash";
@@ -7,14 +7,10 @@ const initialState = {
   list: null
 };
 
-export default (
-  state = initialState,
-  actionstate = initialState,
-  { type, payload }
-) => {
-  // console.log(action.payload)
+export default (state = initialState, { type, payload }) => {
+  console.log(payload);
   switch (type) {
-    case CREATE_CUSTOMER:
+    case CREATE_TASK:
       return update(state, { list: { $push: [payload] } });
       break;
 

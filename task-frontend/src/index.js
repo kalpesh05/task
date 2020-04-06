@@ -19,6 +19,16 @@ axios.defaults.headers.common["Content-Type"] = `application/json`;
 // axios.defaults.headers.common = {'X-Requested-With': 'XMLHttpRequest'}
 axios.defaults.baseURL = `${process.env.REACT_APP_API_HOST}/api`;
 
+axios.interceptors.request.use(function(config) {
+  if (store.getState().user.user && store.getState().user.user.token) {
+    const token = store.getState().user.user.token;
+    // console.log(store.getState().user.user.token);
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
+/*
 axios.interceptors.response.use(
   function(response) {
     return response;
@@ -45,7 +55,7 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
+*/
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading="Loading.." persistor={persistor}>

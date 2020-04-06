@@ -26,6 +26,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   const userData = await getByIdUser(id);
+  // console.log(">>>>>>>>>>>>>>>>>>>>>>>.", userData, id);
   if (!userData.data) {
     done({ message: LOGIN_AGAIN }, false);
   } else {
@@ -59,6 +60,7 @@ passport.use(
 
 passport.use(
   new JwtStrategy(jwtOptions, async (jwt_payload, done) => {
+    // console.log("...", jwt_payload);
     const userData = await getByIdUser(jwt_payload.id);
     console.log(userData);
     if (userData.error == null && userData.data.length > 0) {
